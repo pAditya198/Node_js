@@ -8,16 +8,16 @@ git commit and branching are a typical topic so before adding and commiting chec
 
 #### cd into the folder and then
 
-### npm install
+### $ npm install
 
 #### to install the dependancies and then 
 
-### npm start
+### $ npm start
 
 #### to start the server
 
 ## for folders that does not contain .gitignore simply
 
-### npm start
+### $ npm start
 
 #### and start the server
