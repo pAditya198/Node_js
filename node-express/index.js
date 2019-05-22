@@ -52,7 +52,7 @@ app.put('/dishes/:dishId', (req, res, next) => {
 });
 
 app.delete('/dishes/:dishId', (req, res, next) => {
-    res.end('Deletingthe dish: ' + req.params.dishId);
+    res.end('Deleting the dish: ' + req.params.dishId);
 });
 
 
