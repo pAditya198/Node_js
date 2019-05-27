@@ -20,6 +20,7 @@ app.use('/promotions', promoRouter);
 app.use('/promotions/:promoID', promoRouter);
 app.use('/leaders', leaderRouter);
 app.use('/leaders/:leaderID', leaderRouter);
+
 app.use(express.static(__dirname + '/public'));
 
 
