@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const dishRouter = express.Router();
+const promoRouter = express.Router();
 
-dishRouter.use(bodyParser.json());
+promoRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+promoRouter.route('/')
     .all((req, res, next) => {
         res.statusCode = 200;
         res.setHeader("Content-Type", 'text/plain');
@@ -14,7 +14,7 @@ dishRouter.route('/')
 
 
     .get((req, res, next) => {
-        res.end('Will send all the dishes to you!');
+        res.end('Will send all the promotions to you!');
     })
 
     .post((req, res, next) => {
@@ -27,9 +27,9 @@ dishRouter.route('/')
     })
 
     .delete((req, res, next) => {
-        res.end('Deleting all the dishes');
+        res.end('Deleting all the promotions');
     });
 
 
 
-module.exports = dishRouter;
+module.exports = promoRouter;

@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const dishRouter = express.Router();
+const leaderRouter = express.Router();
 
-dishRouter.use(bodyParser.json());
+leaderRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+leaderRouter.route('/')
     .all((req, res, next) => {
         res.statusCode = 200;
         res.setHeader("Content-Type", 'text/plain');
@@ -14,22 +14,22 @@ dishRouter.route('/')
 
 
     .get((req, res, next) => {
-        res.end('Will send all the dishes to you!');
+        res.end('Will send all the leaders to you!');
     })
 
     .post((req, res, next) => {
-        res.end('Will add the dish : ' + req.body.name + ' with details : ' + req.body.description);
+        res.end('Will add the leader : ' + req.body.name + ' with details : ' + req.body.description);
     })
     .put((req, res, next) => {
         res.statusCode = 403;
-        res.end('PUT operation supported for dishes');
+        res.end('PUT operation supported for leaders');
 
     })
 
     .delete((req, res, next) => {
-        res.end('Deleting all the dishes');
+        res.end('Deleting all the leaders');
     });
 
 
 
-module.exports = dishRouter;
+module.exports = leaderRouter;
