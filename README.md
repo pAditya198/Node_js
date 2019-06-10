@@ -22,3 +22,8 @@ $ npm start
 $ npm start
 ```
 #### and start the server
+
+## To run MongoDB 
+```
+$ mongod --dbpath=/databasepath --bind_ip 127.0.0.1
+```
