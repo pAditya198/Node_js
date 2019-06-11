@@ -15,10 +15,10 @@ connect.then((db) => {
         })
         .then((dish) => {
             console.log(dish);
-
+            var update = "updated test";
             return Dishes.findByIdAndUpdate(dish._id, {
                 $set: {
-                    description: "updated test"
+                    description: update
                 }
             }, {
                 new: true
