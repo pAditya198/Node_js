@@ -72,10 +72,10 @@ leaderRouter.route('/:leaderId')
             .catch((err) => next(err));
     }).delete((req, res, next) => {
         Leaders.findByIdAndRemove(req.params.leaderId)
-            .then((leader) => {
+            .then((resp) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(leader)
+                res.json(resp)
             }, (err) => next(err))
             .catch((err) => next(err));
     });
