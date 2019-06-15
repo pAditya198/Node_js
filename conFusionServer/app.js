@@ -55,7 +55,7 @@ function auth(req, res, next) {
       err.status = 401;
       return next(err);
     }
-    var auth = new Buffer(authHeader.split(' ')[1], 'base64').toString().split(':');
+    var auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
 
     var username = auth[0];
     var password = auth[1];
