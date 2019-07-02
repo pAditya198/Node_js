@@ -17,12 +17,12 @@ const commentSchema = new Schema({
         required: true
     },
     author: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 }, {
-    timestamps: true
-})
+        timestamps: true
+    })
 
 const dishSchema = new Schema({
 
@@ -60,8 +60,8 @@ const dishSchema = new Schema({
     },
     comments: [commentSchema]
 }, {
-    timestamps: true
-});
+        timestamps: true
+    });
 
 var Dishes = mongoose.model('Dish', dishSchema);
 
