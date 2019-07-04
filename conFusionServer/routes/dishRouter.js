@@ -23,15 +23,22 @@ dishRouter.route('/')
     })
 
     .post(authenticate.verifyUser, (req, res, next) => {
-        Dishes.create(req.body)
-            .then((dish) => {
-                console.log("Dish Created", dish);
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(dish);
+        if (req.user.admin == true) {
+            Dishes.create(req.body)
+                .then((dish) => {
+                    console.log("Dish Created", dish);
+                    res.statusCode = 200;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.json(dish);
 
-            }, (err) => next(err))
-            .catch((err) => next(err))
+                }, (err) => next(err))
+                .catch((err) => next(err))
+        }
+        else {
+            err = new Error('You are Not Authorized');
+            err.status = 500;
+            return next(err);
+        }
     })
 
     .put(authenticate.verifyUser, (req, res, next) => {
@@ -41,13 +48,19 @@ dishRouter.route('/')
     })
 
     .delete(authenticate.verifyUser, (req, res, next) => {
-        Dishes.remove({})
-            .then((resp) => {
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(resp);
-            }, (err) => next(err))
-            .catch((err) => next(err))
+        if (req.user.admin == true) {
+            Dishes.remove({})
+                .then((resp) => {
+                    res.statusCode = 200;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.json(resp);
+                }, (err) => next(err))
+                .catch((err) => next(err))
+        } else {
+            err = new Error('You are Not Authorized');
+            err.status = 500;
+            return next(err);
+        }
     });
 
 dishRouter.route('/:dishId')
@@ -66,27 +79,39 @@ dishRouter.route('/:dishId')
         res.statusCode = 403;
         res.end('POST operation not supported for /dishes/' + req.params.dishId);
     }).put(authenticate.verifyUser, (req, res, next) => {
-        Dishes.findByIdAndUpdate(req.params.dishId, {
-            $set: req.body
-        }, {
-                new: true
-            }).then((dish) => {
-                console.log("Dish Created", dish);
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(dish);
+        if (req.user.admin == true) {
+            Dishes.findByIdAndUpdate(req.params.dishId, {
+                $set: req.body
+            }, {
+                    new: true
+                }).then((dish) => {
+                    console.log("Dish Created", dish);
+                    res.statusCode = 200;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.json(dish);
 
-            }, (err) => next(err))
-            .catch((err) => next(err));
+                }, (err) => next(err))
+                .catch((err) => next(err));
+        } else {
+            err = new Error('You are Not Authorized');
+            err.status = 500;
+            return next(err);
+        }
     }).delete(authenticate.verifyUser, (req, res, next) => {
-        Dishes.findByIdAndRemove(req.params.dishId)
-            .then((resp) => {
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(resp);
+        if (req.user.admin == true) {
+            Dishes.findByIdAndRemove(req.params.dishId)
+                .then((resp) => {
+                    res.statusCode = 200;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.json(resp);
 
-            }, (err) => next(err))
-            .catch((err) => next(err));
+                }, (err) => next(err))
+                .catch((err) => next(err));
+        } else {
+            err = new Error('You are Not Authorized');
+            err.status = 500;
+            return next(err);
+        }
     });
 
 
