@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\setlength{\evensidemargin}{.0 in}
+\addtolength{\topmargin}{-1in}
+
+\usepackage[margin=0.5in,top=1in]{geometry}
+
+\newcommand{\lecture}[4]{
+	\pagestyle{headings}
+	\thispagestyle{plain}
+	\noindent
+	\begin{center}
+		{
+			\vbox{
+				{ {\large \bf Design and Analysis of Algorithms (CS203)
+						\hfill Lecture #1} } \\
+				\vspace{4mm}
+				{ {\Large\bf \hfill #3 \hfill} } \\
+				\vspace{2mm}
+				{ {\normalfont \hfill #2 \hfill} } \\
+				\vspace{2mm}
+				{ {{\bf Course Instructor:} Dr. Keyur Parmar \hfill} } \\
+				\vspace{2mm} 
+				{{{\bf Studnet(s) Name(s) and ID(s):} #4 \hfill} } \vspace{0.2cm} \hrule\rule{\textwidth}{2pt}
+			}
+		}
+		
+	\end{center}
+}
+
+\begin{document}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+	% You have to modify the following line to change the lecture number, title, student names and IDs. You can use the comma separated list of students. 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\lecture{1}{July 21, 2019}{Title of the Lecture}{Student Name (ID)} 
+	
+	\section{Introduction} 
+	\begin{itemize}
+		\item You have to modify the following line to change the lecture number, date, title, student names and IDs. You can use the comma separated list of students (the one who scribed the lecture.). \\
+		\verb|\lecture{1}{July 21, 2019}{Title of the Lecture}{Student Name (ID)}|
+		\item Give appropriate numbers and titles to the lecture, section, sub-section, etc.
+		\item Use figures to improve the readability (whenever possible).
+		\item You have to scribe the lecture, but don't merely copy the lecture. You have to use your creativity to add new figures, examples, analyze the content, provide the links to the interesting references on the same topic, etc.  
+	
+	\end{itemize}
+	\subsection{Title of the subsection}
+	
+	%\bibliography{bib file}
+\end{document}
+
+
