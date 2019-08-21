@@ -1,19 +1,34 @@
-var rect = require('./rectangle');
+var express = require('express');
+var http = require('http');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
 
-function solveRec(l, b) {
-    console.log("Solving the rectangle with l = " + l + ' and b = ' + b);
-    rect(l, b, (err, rectangle) => {
-        if (err) {
-            console.log("ERROR : ", err.message);
-        } else {
-            console.log("The Area of the rectangle l = " + l + ' b = ' + b + " is " + rectangle.area());
-            console.log("The Perimeter of the rectangle is l = " + l + ' b = ' + b + " is " + rectangle.perimeter());
-        }
-    });
-    console.log("This statement is after the call to the rect()");
-}
+const port = 3000;
+const hostname = 'localhost';
+const dishRouter = require('./routes/dishRouter');
+const promoRouter = require('./routes/promoRouter');
+const leaderRouter = require('./routes/leaderRouter');
+const app = express();
 
-solveRec(10, 5);
-solveRec(0, 5);
-solveRec(1, 50);
-solveRec(5, 6);
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+
+app.use('/dishes', dishRouter);
+app.use('/dishes/:dishID', dishRouter);
+app.use('/promotions', promoRouter);
+app.use('/promotions/:promoID', promoRouter);
+app.use('/leaders', leaderRouter);
+app.use('/leaders/:leaderID', leaderRouter);
+
+app.use(express.static(__dirname + '/public'));
+app.use((req, res, next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<html><body><H1>Welcome to express server</H1></body></html>');
+});
+
+const server = http.createServer(app);
+
+server.listen(port, hostname, () => {
+    console.log(`Server Running at http://${hostname}:${port}`);
+})
